@@ -1,0 +1,13 @@
+.emailInput {
+    margin: 40px;
+    padding: 10px;
+}
+
+.providerSuggestion {
+    margin-right: 20px;
+    background: none;
+    color: darkgrey;
+    text-decoration: underline;
+    border: none;
+    cursor: pointer;
+}
