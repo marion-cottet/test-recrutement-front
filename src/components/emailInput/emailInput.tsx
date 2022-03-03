@@ -34,10 +34,11 @@ const completeEmail = (email: string, provider: string): string => {
 const EmailInput: React.FC = () => {
   const [displayedProviders, setDisplayedProviders] = React.useState<string[]>(getProvidersSuggestions());
   const [email, setEmail] = React.useState<string>("");
+  const emailInputRef = React.useRef<HTMLInputElement>(null) ;
 
   return (
     <div>
-      <input type="email" value={email} className="emailInput" onChange={(event) => {
+      <input type="email" value={email} ref={emailInputRef} className="emailInput" onChange={(event) => {
         setDisplayedProviders(getProvidersSuggestions(event.target.value))
         setEmail(event.target.value)
       }}/>
@@ -47,7 +48,10 @@ const EmailInput: React.FC = () => {
             <button key={index} className="providerSuggestion" onClick={() => {
               setEmail(completeEmail(email,provider))
               setDisplayedProviders([])
-            }}>@{provider}</button>
+              emailInputRef?.current?.focus()
+            }}>
+              @{provider}
+            </button>
           )
         )
       }
